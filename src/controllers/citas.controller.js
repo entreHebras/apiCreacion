@@ -20,6 +20,13 @@ export const insertarServicios = async function (req, res) {
   res.send("exitoso");
 };
 
+export const creacion = async function (req, res) {
+  await pool.query(
+    "CREATE TABLE empleados (EmpleadoID int(11) NOT NULL,Nombre varchar(100) DEFAULT NULL,Apellido varchar(100) DEFAULT NULL,Telefono varchar(100) DEFAULT NULL,CorreoElectronico varchar(100) DEFAULT NULL,FechaInicio timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),idRol int(11) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;"
+  );
+  res.send("exitoso");
+};
+
 export const login = async function (req, res) {
   const { usuario, contrasenia } = req.body;
   const [e] = await pool.query(
