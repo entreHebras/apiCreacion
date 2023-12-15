@@ -21,7 +21,9 @@ export const insertarServicios = async function (req, res) {
 };
 
 export const creacion = async function (req, res) {
-  await pool.query("drop table empleados");
+  await pool.query(
+    "CREATE TABLE `empleados` (`EmpleadoID` int(11) NOT NULL,`Nombre` varchar(100) DEFAULT NULL,`Apellido` varchar(100) DEFAULT NULL,`Telefono` varchar(100) DEFAULT NULL,`CorreoElectronico` varchar(100) DEFAULT NULL,`FechaInicio` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),`idRol` int(11) NOT NULL) "
+  );
   res.send("exitoso");
 };
 
