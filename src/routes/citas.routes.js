@@ -17,6 +17,6 @@ router.get("/horariosCitas", horariosCitas);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
 
-router.delete("eliminarClientes", eliminarClientes);
+router.delete("/eliminarClientes", eliminarClientes);
 
 export default router;
