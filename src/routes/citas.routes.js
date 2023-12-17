@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   citas,
+  clientes,
   creacion,
   horariosCitas,
   insertarServicios,
@@ -10,6 +11,8 @@ import {
 const router = Router();
 
 router.get("/citas", citas);
+router.get("/clientes", clientes);
+
 router.get("/horariosCitas", horariosCitas);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
