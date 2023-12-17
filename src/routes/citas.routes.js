@@ -16,5 +16,5 @@ router.get("/clientes", clientes);
 router.get("/horariosCitas", horariosCitas);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
-router.get("/creacion", creacion);
+
 export default router;
