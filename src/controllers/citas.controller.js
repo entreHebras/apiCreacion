@@ -1,8 +1,14 @@
 import { pool } from "../Db.js";
 import jwt from "jsonwebtoken";
+
 export const citas = async function (req, res) {
   const [ro] = await pool.query("select Nombre from empleados");
   res.send(ro);
+};
+
+export const clientes = async function (req, res) {
+  const [cliente] = await pool.query("SELECT * FROM tablaclientes");
+  res.send(cliente);
 };
 
 export const horariosCitas = async function (req, res) {
@@ -17,11 +23,6 @@ export const insertarServicios = async function (req, res) {
     "INSERT INTO tablaservicios (NombreServicio, Descripcion, DuracionEstimada, Precio) VALUES (?,?,?,?)",
     [nombreservicio, descripcion, duracionestimada, precio]
   );
-  res.send("exitoso");
-};
-
-export const creacion = async function (req, res) {
-  await pool.query("ALTER TABLE `empleados`ADD PRIMARY KEY (`EmpleadoID`)");
   res.send("exitoso");
 };
 
