@@ -11,6 +11,16 @@ export const clientes = async function (req, res) {
   res.send(cliente);
 };
 
+export const eliminarClientes = async function (req, res) {
+  const { ClienteID } = req.body;
+
+  await pool.query(
+    "DELETE FROM tablaclientes WHERE tablaclientes.ClienteID = ?",
+    [ClienteID]
+  );
+  res.send("exitoso");
+};
+
 export const horariosCitas = async function (req, res) {
   const [citas] = await pool.query("select hora from tablahorarios");
   res.send(citas);
