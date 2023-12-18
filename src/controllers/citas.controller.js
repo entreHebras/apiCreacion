@@ -18,7 +18,7 @@ export const eliminarClientes = async function (req, res) {
     "DELETE FROM tablaclientes WHERE tablaclientes.ClienteID = ?",
     [ClienteID]
   );
-  res.send("exitoso");
+  res.send("exitoso0");
 };
 
 export const horariosCitas = async function (req, res) {
