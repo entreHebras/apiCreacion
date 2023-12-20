@@ -2,7 +2,7 @@ import { pool } from "../Db.js";
 import jwt from "jsonwebtoken";
 
 export const citas = async function (req, res) {
-  const [ro] = await pool.query("select Nombre from empleados");
+  const [ro] = await pool.query("select * from tablacitas");
   res.send(ro);
 };
 
