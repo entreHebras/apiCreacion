@@ -3,7 +3,9 @@ import jwt from "jsonwebtoken";
 
 export const citas = async function (req, res) {
   const [events] = await pool.query("select date from tablacitas");
-  res.send(events);
+  res.send({
+    events: [events],
+  });
 };
 
 export const clientes = async function (req, res) {
