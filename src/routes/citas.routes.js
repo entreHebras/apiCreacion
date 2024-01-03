@@ -6,6 +6,7 @@ import {
   horariosCitas,
   insertarServicios,
   login,
+  reservarCitas,
   servicios,
 } from "../controllers/citas.controller.js";
 
@@ -19,6 +20,7 @@ router.get("/servicioOfrecido", servicios);
 
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
+router.post("/reservarCita", reservarCitas);
 
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 

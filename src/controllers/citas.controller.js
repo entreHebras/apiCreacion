@@ -56,3 +56,14 @@ export const login = async function (req, res) {
     res.json({ success: true, token });
   }
 };
+
+export const reservarCitas = async function (req, res) {
+  const { Nombre, Apellido, cedula, Telefono, CorreoElectronico } = req.body;
+
+  let id = await pool.query(
+    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
+    [Nombre, Apellido, cedula, Telefono, CorreoElectronico],
+    "SELECT LAST_INSERT_ID()"
+  );
+  res(id);
+};
