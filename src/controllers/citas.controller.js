@@ -22,7 +22,7 @@ export const eliminarClientes = async function (req, res) {
 };
 
 export const horariosCitas = async function (req, res) {
-  const [citas] = await pool.query("select hora from tablahorarios");
+  const [citas] = await pool.query("select * from tablahorarios");
   res.send(citas);
 };
 
