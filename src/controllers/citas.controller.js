@@ -26,6 +26,11 @@ export const horariosCitas = async function (req, res) {
   res.send(citas);
 };
 
+export const servicios = async function (req, res) {
+  const [servicios] = await pool.query("select * from tablaservicios");
+  res.send(servicios);
+};
+
 export const insertarServicios = async function (req, res) {
   const { nombreservicio, descripcion, duracionestimada, precio } = req.body;
 
