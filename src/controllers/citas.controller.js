@@ -66,5 +66,5 @@ export const reservarCitas = async function (req, res) {
   );
 
   const lastInsertId = lo.insertId;
-  res.send(lastInsertId);
+  res.send(lo.insertId);
 };
