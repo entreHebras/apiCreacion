@@ -60,11 +60,9 @@ export const login = async function (req, res) {
 export const reservarCitas = async function (req, res) {
   const { Nombre, Apellido, cedula, Telefono, CorreoElectronico } = req.body;
 
-  await pool.query(
-    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
+  const [lo] = await pool.query(
+    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?);SELECT LAST_INSERT_ID()",
     [Nombre, Apellido, cedula, Telefono, CorreoElectronico]
   );
-
-  let id = await pool.query("SELECT LAST_INSERT_ID()");
-  res(id);
+  res.send(lo);
 };
