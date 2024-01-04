@@ -60,7 +60,7 @@ export const login = async function (req, res) {
 export const reservarCitas = async function (req, res) {
   const { Nombre, Apellido, cedula, Telefono, CorreoElectronico } = req.body;
 
-  const [lo] = await pool.query(
+  const [lo] = await pool.execute(
     "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
     [Nombre, Apellido, cedula, Telefono, CorreoElectronico]
   );
