@@ -61,8 +61,10 @@ export const reservarCitas = async function (req, res) {
   const { Nombre, Apellido, cedula, Telefono, CorreoElectronico } = req.body;
 
   const [lo] = await pool.query(
-    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?);SELECT LAST_INSERT_ID()",
+    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
     [Nombre, Apellido, cedula, Telefono, CorreoElectronico]
   );
-  res.send(lo);
+
+  const lastInsertId = lo.insertId;
+  res.send(lastInsertId);
 };
