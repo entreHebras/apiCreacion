@@ -59,7 +59,7 @@ export const login = async function (req, res) {
 
 export const validar = async function (req, res) {
   const [events] = await pool.query(
-    "SELECT date, horaCita, COUNT(*) AS total_ocurrencias FROM tablacitas WHERE date = '2023-12-31' GROUP BY date, horaCita;"
+    "SELECT tablahorarios.hora, COUNT(tablacitas.horaCita) AS total_ocurrencias FROM tablahorarios  LEFT JOIN tablacitas  ON tablahorarios.idHorario = tablacitas.horaCita AND tablacitas.date = '2023-12-31' GROUP BY tablahorarios.hora HAVING COUNT(tablacitas.horaCita) < 3;"
   );
   res.json(events);
 };
