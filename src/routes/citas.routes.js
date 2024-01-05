@@ -18,7 +18,7 @@ router.get("/clientes", clientes);
 
 router.get("/horariosCitas", horariosCitas);
 router.get("/servicioOfrecido", servicios);
-router.get("/validar", validar);
+router.post("/validar", validar);
 
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
