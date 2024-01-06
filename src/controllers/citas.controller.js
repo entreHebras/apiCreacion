@@ -70,11 +70,10 @@ export const validar = async function (req, res) {
 
 export const reservarCitas = async function (req, res) {
   const {
-    Nombre,
-    Apellido,
-    cedula,
-    Telefono,
-    CorreoElectronico,
+    nombre,
+    apellido,
+    telefono,
+    correoElectronico,
     servicioSolicitado,
     horaCita,
     date,
@@ -82,7 +81,7 @@ export const reservarCitas = async function (req, res) {
 
   const [result] = await pool.execute(
     "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
-    [Nombre, Apellido, cedula, Telefono, CorreoElectronico]
+    [nombre, apellido, "1721524948", telefono, correoElectronico]
   );
 
   const lastInsertId = result.insertId;
