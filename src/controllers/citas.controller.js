@@ -69,7 +69,16 @@ export const validar = async function (req, res) {
 };
 
 export const reservarCitas = async function (req, res) {
-  const { Nombre, Apellido, cedula, Telefono, CorreoElectronico } = req.body;
+  const {
+    Nombre,
+    Apellido,
+    cedula,
+    Telefono,
+    CorreoElectronico,
+    servicioSolicitado,
+    horaCita,
+    date,
+  } = req.body;
 
   const [result] = await pool.execute(
     "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
@@ -77,6 +86,11 @@ export const reservarCitas = async function (req, res) {
   );
 
   const lastInsertId = result.insertId;
+
+  await pool.execute(
+    "insert into tablacitas(ClienteID,EmpleadoID,servicioSolicitado,horaCita,date) VALUES(?,?,?,?,?) ",
+    [lastInsertId, 0, servicioSolicitado, horaCita, date]
+  );
 
   res.json({ lastInsertId });
 };
