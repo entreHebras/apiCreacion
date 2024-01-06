@@ -88,7 +88,7 @@ export const reservarCitas = async function (req, res) {
 
   await pool.execute(
     "insert into tablacitas(ClienteID,EmpleadoID,servicioSolicitado,horaCita,date) VALUES(?,?,?,?,?) ",
-    [lastInsertId, 0, servicioSolicitado, horaCita, date]
+    [lastInsertId, 1, servicioSolicitado, horaCita, date]
   );
 
   res.json({ lastInsertId });
