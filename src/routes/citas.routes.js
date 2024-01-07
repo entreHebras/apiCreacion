@@ -13,6 +13,10 @@ import {
 
 const router = Router();
 
+router.use((req, res, next) => {
+  console.log(`r:${req.url}`);
+});
+
 router.get("/citas", citas);
 router.get("/clientes", clientes);
 
