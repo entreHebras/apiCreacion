@@ -4,7 +4,15 @@ import cookieParser from "cookie-parser";
 import "./config.js";
 import cors from "cors";
 const app = express();
-app.use(cors());
+
+const corsOption = {
+  origin: "https://egtrbgtrbr.000webhostapp.com/#/",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Habilita el intercambio de cookies a través de las solicitudes
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOption));
 app.use(cookieParser());
 app.use(express.json());
 app.use(citasCuentas);
