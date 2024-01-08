@@ -98,7 +98,7 @@ export const reservarCitas = async function (req, res) {
 
   try {
     await transporter.sendMail({
-      from: '"BanCuy" <entrehebras06@gmail.com>', // sender address
+      from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
       to: correoElectronico, // list of receivers
       subject: "Notificacion ✔", // Subject line
       html: `
