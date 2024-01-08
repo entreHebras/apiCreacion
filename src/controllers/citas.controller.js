@@ -1,5 +1,6 @@
 import { pool } from "../Db.js";
 import jwt from "jsonwebtoken";
+import { transporter } from "../email.js";
 
 export const citas = async function (req, res) {
   const [events] = await pool.query("select * from tablacitas");
@@ -22,7 +23,7 @@ export const eliminarClientes = async function (req, res) {
     "DELETE FROM tablaclientes WHERE tablaclientes.ClienteID = ?",
     [ClienteID]
   );
-  res.send("exitoso0");
+  res.send("exitoso0   ");
 };
 
 export const horariosCitas = async function (req, res) {
@@ -94,6 +95,22 @@ export const reservarCitas = async function (req, res) {
     "insert into tablacitas(ClienteID,EmpleadoID,servicioSolicitado,horaCita,date) VALUES(?,?,?,?,?) ",
     [lastInsertId, 1, servicioSolicitado, horaCita, date]
   );
+
+  try {
+    await transporter.sendMail({
+      from: '"BanCuy" <entrehebras06@gmail.com>', // sender address
+      to: correoElectronico, // list of receivers
+      subject: "Notificacion ✔", // Subject line
+      html: `
+      <b><center> Tu tikect </center> </b><br>
+       <b>Tu cita : ${nombre}, ${apellido}   ${date}</b> <br>
+       
+
+      `,
+    });
+  } catch (error) {
+    emailStatus = error;
+  }
 
   res.json({ lastInsertId });
 };
