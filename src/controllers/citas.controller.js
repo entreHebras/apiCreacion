@@ -37,11 +37,11 @@ export const servicios = async function (req, res) {
 };
 
 export const insertarServicios = async function (req, res) {
-  const { nombreservicio, descripcion, duracionestimada, precio } = req.body;
+  const { NombreServicio, Descripcion, DuracionEstimada, Precio } = req.body;
 
   await pool.query(
     "INSERT INTO tablaservicios (NombreServicio, Descripcion, DuracionEstimada, Precio) VALUES (?,?,?,?)",
-    [nombreservicio, descripcion, duracionestimada, precio]
+    [NombreServicio, Descripcion, DuracionEstimada, Precio]
   );
   res.send("exitoso");
 };
