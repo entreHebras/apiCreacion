@@ -75,35 +75,35 @@ export const validar = async function (req, res) {
 
 export const reservarCitas = async function (req, res) {
   const {
-    nombre,
-    apellido,
-    telefono,
-    correoElectronico,
-    servicioSolicitado,
-    horaCita,
-    date,
+    Nombre,
+    Apellido,
+    cedula,
+    Telefono,
+    CorreoElectronico,
+    direccion,
+    contrasenia,
   } = req.body;
 
   const [result] = await pool.execute(
-    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico) VALUES (?,?,?,?,?)",
-    [nombre, apellido, "1721524948", telefono, correoElectronico]
+    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?,?)",
+    [Nombre, Apellido, "1721524948", Telefono, CorreoElectronico, direccion]
   );
 
   const lastInsertId = result.insertId;
 
   await pool.execute(
-    "insert into tablacitas(ClienteID,EmpleadoID,servicioSolicitado,horaCita,date) VALUES(?,?,?,?,?) ",
-    [lastInsertId, 1, servicioSolicitado, horaCita, date]
+    "insert into login(usuario,contrasena,tipo_usuario,cliente_id,empleado_id) VALUES(?,?,?,?,?) ",
+    [CorreoElectronico, contrasenia, 1, lastInsertId, 0]
   );
 
   try {
     await transporter.sendMail({
       from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
-      to: correoElectronico, // list of receivers
+      to: CorreoElectronico, // list of receivers
       subject: "Notificacion ✔", // Subject line
       html: `
       <b><center> Tu tikect </center> </b><br>
-       <b>Tu cita : ${nombre}, ${apellido}   ${date}</b> <br>
+       <b>Tu cita : ${Nombre}, ${Apellido}  </b> <br>
        
 
       `,
