@@ -92,8 +92,8 @@ export const reservarCitas = async function (req, res) {
   const lastInsertId = result.insertId;
 
   await pool.execute(
-    "insert into login(usuario,contrasena,tipo_usuario,cliente_id,empleado_id) VALUES(?,?,?,?,?) ",
-    [CorreoElectronico, contrasenia, 1, lastInsertId, 0]
+    "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
+    [CorreoElectronico, contrasenia, 1, lastInsertId]
   );
 
   try {
