@@ -84,33 +84,42 @@ export const reservarCitas = async function (req, res) {
     contrasenia,
   } = req.body;
 
-  const [result] = await pool.execute(
-    "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?,?)",
-    [Nombre, Apellido, "1721524948", Telefono, CorreoElectronico, direccion]
-  );
+  const [er] = await pool.query("select usuario  from login where usuario=?", [
+    CorreoElectronico,
+  ]);
 
-  const lastInsertId = result.insertId;
+  if (er.length <= 0) {
+    const [result] = await pool.execute(
+      "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?,?)",
+      [Nombre, Apellido, "1721524948", Telefono, CorreoElectronico, direccion]
+    );
 
-  await pool.execute(
-    "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
-    [CorreoElectronico, contrasenia, 1, lastInsertId]
-  );
+    const lastInsertId = result.insertId;
 
-  try {
-    await transporter.sendMail({
-      from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
-      to: CorreoElectronico, // list of receivers
-      subject: "Notificacion ✔", // Subject line
-      html: `
+    await pool.execute(
+      "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
+      [CorreoElectronico, contrasenia, 1, lastInsertId]
+    );
+
+    try {
+      await transporter.sendMail({
+        from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
+        to: CorreoElectronico, // list of receivers
+        subject: "Notificacion ✔", // Subject line
+        html: `
       <b><center> Tu tikect </center> </b><br>
        <b>Tu cita : ${Nombre}, ${Apellido}  </b> <br>
        
 
       `,
-    });
-  } catch (error) {
-    emailStatus = error;
-  }
+      });
+    } catch (error) {
+      emailStatus = error;
+    }
 
-  res.json({ lastInsertId });
+    res.json({ lastInsertId });
+  } else {
+    console.log("correo electronico ya registrado");
+    res.status(404).json({ mesanje: "correo electronico ya registradonpm" });
+  }
 };
