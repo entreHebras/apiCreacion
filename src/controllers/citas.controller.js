@@ -49,7 +49,7 @@ export const insertarServicios = async function (req, res) {
 export const login = async function (req, res) {
   const { usuario, contrasenia } = req.body;
   const [e] = await pool.query(
-    "SELECT *  FROM tablalogin WHERE usuario=? AND contrasenia=?",
+    "SELECT *  FROM login WHERE usuario=? AND contrasena=?",
     [usuario, contrasenia]
   );
 
