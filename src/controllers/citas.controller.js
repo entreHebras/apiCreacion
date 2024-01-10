@@ -58,7 +58,7 @@ export const login = async function (req, res) {
   } else {
     const token = jwt.sign({ usuario }, "tu_secreto", { expiresIn: "1h" });
     res.cookie("token", token, { httpOnly: true });
-    res.json({ success: true, token });
+    res.json({ success: true, token, e });
   }
 };
 
