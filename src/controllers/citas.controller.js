@@ -77,7 +77,7 @@ export const reservarCitas = async function (req, res) {
   const {
     Nombre,
     Apellido,
-    cedula,
+
     Telefono,
     CorreoElectronico,
     direccion,
@@ -90,15 +90,15 @@ export const reservarCitas = async function (req, res) {
 
   if (er.length <= 0) {
     const [result] = await pool.execute(
-      "INSERT INTO tablaclientes (Nombre, Apellido, cedula, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?,?)",
-      [Nombre, Apellido, "1721524948", Telefono, CorreoElectronico, direccion]
+      "INSERT INTO tablaclientes (Nombre, Apellido, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?)",
+      [Nombre, Apellido, Telefono, CorreoElectronico, direccion]
     );
 
     const lastInsertId = result.insertId;
 
     await pool.execute(
       "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
-      [CorreoElectronico, contrasenia, 1, lastInsertId]
+      [CorreoElectronico, contrasenia, 2, lastInsertId]
     );
 
     try {
