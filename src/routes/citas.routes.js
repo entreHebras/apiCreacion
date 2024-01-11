@@ -18,7 +18,7 @@ router.get("/citas", citas);
 router.get("/clientes", clientes);
 router.get("/horariosCitas", horariosCitas);
 router.get("/servicioOfrecido", servicios);
-router.get("/informacionCliente", informacionCliente);
+router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
