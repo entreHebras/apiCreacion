@@ -77,7 +77,6 @@ export const reservarCitas = async function (req, res) {
   const {
     Nombre,
     Apellido,
-
     Telefono,
     CorreoElectronico,
     direccion,
@@ -122,4 +121,14 @@ export const reservarCitas = async function (req, res) {
     console.log("correo electronico ya registrado");
     res.status(404).json({ mesanje: "correo electronico ya registradonpm" });
   }
+};
+
+export const informacionCliente = async function (req, res) {
+  const { id } = req.body;
+
+  const [er] = await pool.query(
+    "select *  from tablaclientes where ClienteID=?",
+    [id]
+  );
+  res.send(er);
 };
