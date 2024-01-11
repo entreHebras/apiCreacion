@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   citas,
+  citasCliente,
   clientes,
   eliminarClientes,
   horariosCitas,
@@ -18,6 +19,8 @@ router.get("/citas", citas);
 router.get("/clientes", clientes);
 router.get("/horariosCitas", horariosCitas);
 router.get("/servicioOfrecido", servicios);
+
+router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);
 router.post("/insertarServicios", insertarServicios);
