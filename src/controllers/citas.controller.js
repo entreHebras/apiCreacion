@@ -88,6 +88,23 @@ export const reservarCitas = async function (req, res) {
   ]);
 
   if (er.length <= 0) {
+    const uniqueKey = " Erctbtb"; // Reemplaza esto con tu llave única secreta
+    const saltedData = `${uniqueKey}-${Nombre}-${Apellido}-${Telefono}-${CorreoElectronico}-${direccion}`;
+
+    const encryptedData = crypto
+      .createHash("md5")
+      .update(saltedData)
+      .digest("hex");
+
+    req.encryptedData = {
+      Nombre: Nombre,
+      Apellido: Apellido,
+      Telefono: Telefono,
+      CorreoElectronico: CorreoElectronico,
+      direccion: direccion,
+      hashedData: encryptedData,
+    };
+
     const [result] = await pool.execute(
       "INSERT INTO tablaclientes (Nombre, Apellido, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?)",
       [Nombre, Apellido, Telefono, CorreoElectronico, direccion]
