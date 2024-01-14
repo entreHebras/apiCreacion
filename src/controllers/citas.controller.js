@@ -1,6 +1,7 @@
 import { pool } from "../Db.js";
 import jwt from "jsonwebtoken";
 import { transporter } from "../email.js";
+const crypto = require("crypto");
 
 export const citas = async function (req, res) {
   const [events] = await pool.query("select * from tablacitas");
