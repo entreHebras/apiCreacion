@@ -1,7 +1,6 @@
 import { pool } from "../Db.js";
 import jwt from "jsonwebtoken";
 import { transporter } from "../email.js";
-import crypto from "crypto";
 
 export const citas = async function (req, res) {
   const [events] = await pool.query("select * from tablacitas");
@@ -89,32 +88,9 @@ export const reservarCitas = async function (req, res) {
   ]);
 
   if (er.length <= 0) {
-    const uniqueKey = " Erctbtb"; // Reemplaza esto con tu llave única secreta
-    const saltedData = `${uniqueKey}-${Nombre}-${Apellido}-${Telefono}-${CorreoElectronico}-${direccion}`;
-
-    const encryptedData = crypto
-      .createHash("md5")
-      .update(saltedData)
-      .digest("hex");
-
-    req.encryptedData = {
-      Nombre: Nombre,
-      Apellido: Apellido,
-      Telefono: Telefono,
-      CorreoElectronico: CorreoElectronico,
-      direccion: direccion,
-      hashedData: encryptedData,
-    };
-
     const [result] = await pool.execute(
       "INSERT INTO tablaclientes (Nombre, Apellido, Telefono,CorreoElectronico,direccion) VALUES (?,?,?,?,?)",
-      [
-        req.encryptedData.Nombre,
-        req.encryptedData.Apellido,
-        req.encryptedData.Telefono,
-        req.encryptedData.CorreoElectronico,
-        req.encryptedData.direccion,
-      ]
+      [Nombre, Apellido, Telefono, CorreoElectronico, direccion]
     );
 
     const lastInsertId = result.insertId;
