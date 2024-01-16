@@ -8,6 +8,7 @@ import {
   informacionCliente,
   insertarServicios,
   login,
+  login1,
   reservarCitas,
   servicios,
   validar,
@@ -19,6 +20,7 @@ router.get("/citas", citas);
 router.get("/clientes", clientes);
 router.get("/horariosCitas", horariosCitas);
 router.get("/servicioOfrecido", servicios);
+router.get("/login", login1);
 
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);

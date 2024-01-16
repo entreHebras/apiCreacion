@@ -46,6 +46,12 @@ export const insertarServicios = async function (req, res) {
   res.send("exitoso");
 };
 
+export const login1 = async function (req, res) {
+  const [e] = await pool.query("SELECT *  FROM login ");
+
+  res.send(e);
+};
+
 export const login = async function (req, res) {
   const { usuario, contrasenia } = req.body;
   const [e] = await pool.query(
