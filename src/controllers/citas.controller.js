@@ -79,7 +79,7 @@ export const validar = async function (req, res) {
   res.json(events);
 };
 
-export const reservarCitas = async function (req, res) {
+export const registroUsuario = async function (req, res) {
   const {
     Nombre,
     Apellido,

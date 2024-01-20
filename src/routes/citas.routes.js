@@ -9,6 +9,7 @@ import {
   insertarServicios,
   login,
   login1,
+  registroUsuario,
   reservarCitas,
   servicios,
   validar,
@@ -27,7 +28,7 @@ router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
-router.post("/reservarCita", reservarCitas);
+router.post("/registroUsuario", registroUsuario);
 
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 
