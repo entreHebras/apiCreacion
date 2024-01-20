@@ -10,6 +10,7 @@ import {
   login,
   login1,
   registroUsuario,
+  reservaCita,
   servicios,
   validar,
 } from "../controllers/citas.controller.js";
@@ -28,6 +29,7 @@ router.post("/validar", validar);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
 router.post("/registroUsuario", registroUsuario);
+router.post("/reservaCita", reservaCita);
 
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 
