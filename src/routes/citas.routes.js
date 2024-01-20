@@ -10,7 +10,6 @@ import {
   login,
   login1,
   registroUsuario,
-  reservarCitas,
   servicios,
   validar,
 } from "../controllers/citas.controller.js";
