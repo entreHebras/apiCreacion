@@ -87,10 +87,11 @@ export const registroUsuario = async function (req, res) {
     CorreoElectronico,
     direccion,
     contrasenia,
+    CorreoElectronico2,
   } = req.body;
 
-  const [er] = await pool.query("select usuario  from login where usuario=?", [
-    CorreoElectronico,
+  const [er] = await pool.query("select usuario from login where usuario=?", [
+    CorreoElectronico2,
   ]);
 
   if (er.length <= 0) {
@@ -109,7 +110,7 @@ export const registroUsuario = async function (req, res) {
     try {
       await transporter.sendMail({
         from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
-        to: CorreoElectronico, // list of receivers
+        to: CorreoElectronico2, // list of receivers
         subject: "Notificacion ✔", // Subject line
         html: `
       <b><center> Tu tikect </center> </b><br>
