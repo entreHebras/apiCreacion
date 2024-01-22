@@ -12,6 +12,7 @@ import {
   registroUsuario,
   reservaCita,
   servicios,
+  usuarios,
   validar,
 } from "../controllers/citas.controller.js";
 
@@ -22,7 +23,7 @@ router.get("/clientes", clientes);
 router.get("/horariosCitas", horariosCitas);
 router.get("/servicioOfrecido", servicios);
 router.get("/login", login1);
-
+router.get("/usuarios", usuarios);
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);

@@ -79,6 +79,12 @@ export const validar = async function (req, res) {
   res.json(events);
 };
 
+export const usuarios = async function (req, res) {
+  const [er] = await pool.query("select usuario from login");
+
+  res.send(er);
+};
+
 export const registroUsuario = async function (req, res) {
   const {
     Nombre,
