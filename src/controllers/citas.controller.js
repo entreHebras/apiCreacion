@@ -163,3 +163,28 @@ export const reservaCita = async function (req, res) {
   );
   res.send("exitoso");
 };
+
+export const recuperarContrasenia = async function (req, res) {
+  const { CorreoElectronico, CorreoElectronico2 } = req.body;
+
+  const [er] = await pool.execute(
+    "select contrasena from login where usuario=? ",
+    [CorreoElectronico]
+  );
+
+  try {
+    await transporter.sendMail({
+      from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
+      to: CorreoElectronico2, // list of receivers
+      subject: "Notificacion ✔", // Subject line
+      html: `
+    <b><center> Tu tikect </center> </b><br>
+     <b>Tu codigo : ${er.contrasena}  </b> <br>
+     
+
+    `,
+    });
+  } catch (error) {
+    emailStatus = error;
+  }
+};

@@ -9,6 +9,7 @@ import {
   insertarServicios,
   login,
   login1,
+  recuperarContrasenia,
   registroUsuario,
   reservaCita,
   servicios,
@@ -31,7 +32,7 @@ router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
 router.post("/registroUsuario", registroUsuario);
 router.post("/reservaCita", reservaCita);
-
+router.post("recuperarContrasenia", recuperarContrasenia);
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 
 export default router;
