@@ -172,6 +172,7 @@ export const recuperarContrasenia = async function (req, res) {
     [CorreoElectronico]
   );
 
+  console.log(CorreoElectronico2, CorreoElectronico);
   try {
     await transporter.sendMail({
       from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
@@ -187,4 +188,6 @@ export const recuperarContrasenia = async function (req, res) {
   } catch (error) {
     emailStatus = error;
   }
+
+  res.send("exitoso");
 };
