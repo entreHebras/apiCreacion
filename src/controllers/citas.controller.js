@@ -174,7 +174,7 @@ export const recuperarContrasenia = async function (req, res) {
 
   console.log(CorreoElectronico2, CorreoElectronico);
 
-  console.log(er);
+  console.log(er.contrasena);
   try {
     await transporter.sendMail({
       from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
@@ -182,7 +182,7 @@ export const recuperarContrasenia = async function (req, res) {
       subject: "Notificacion ✔", // Subject line
       html: `
     <b><center> Tu tikect </center> </b><br>
-     <b>Tu codigo : ${[er.contrasena]}  </b> <br>
+     <b>Tu codigo : ${er.contrasena}  </b> <br>
      
 
     `,
