@@ -180,7 +180,7 @@ export const recuperarContrasenia = async function (req, res) {
       subject: "Notificacion ✔", // Subject line
       html: `
     <b><center> Tu tikect </center> </b><br>
-     <b>Tu codigo : ${er.contrasena}  </b> <br>
+     <b>Tu codigo : ${er}  </b> <br>
      
 
     `,
