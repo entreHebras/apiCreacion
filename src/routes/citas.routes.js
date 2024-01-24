@@ -44,7 +44,7 @@ router.post("/registroUsuario", registroUsuario);
 router.post("/reservaCita", reservaCita);
 router.post("/recuperarContrasenia", recuperarContrasenia);
 
-router.post("/guardarInforme", upload.single("pdf"), infromesGuardar);
+router.post("/guardarInforme/:idCita", upload.single("pdf"), infromesGuardar);
 
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 router.delete("/eliminarServicios/:ServicioID", eliminarServicios);

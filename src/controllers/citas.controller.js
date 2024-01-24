@@ -4,6 +4,11 @@ import { transporter } from "../email.js";
 
 export const infromesGuardar = async function (req, res) {
   const pdfData = req.file.buffer;
+  const idCita = req.params.idCita;
+
+  await pool.query("UPDATE tablacitas SET estado = 1 WHERE CitaID = ?", [
+    idCita,
+  ]);
 
   await pool.query("INSERT INTO  tablaInformes (infrome) VALUES(?)", [pdfData]);
   res.send("exitoso");
