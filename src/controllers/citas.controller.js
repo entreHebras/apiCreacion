@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { transporter } from "../email.js";
 export const infromesGuardar = async function (req, res) {
   const pdfData = req.file.buffer;
-  await pool.query("insert into tablaInformes (informe)values(?)", [pdfData]);
+  await pool.query("insert into tablaInformes (infrome)values(?)", [pdfData]);
   res.send("exitoso");
 };
 export const citas = async function (req, res) {
