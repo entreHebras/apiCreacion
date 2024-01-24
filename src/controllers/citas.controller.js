@@ -35,7 +35,7 @@ export const obtenerPDFDesdeBaseDeDatos = async function (req, res) {
       return res.status(404).json({ error: "Informe no encontrado" });
     }
 
-    const pdfBlob = informe[0].pdfBlob;
+    const pdfBlob = informe[0].infrome;
 
     // Enviar el blob como respuesta
     res.status(200).end(pdfBlob, "binary");
