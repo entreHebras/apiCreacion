@@ -10,7 +10,16 @@ export const infromesGuardar = async function (req, res) {
 
 export const seleccionarInformes = async function (req, res) {
   const [infomrer] = await pool.query("select * from tablaInformes ");
-  res.send({ infomrer });
+
+  // Agregar el enlace al PDF en cada informe
+  const informesConEnlace = informes.map((informe) => ({
+    id: informe.InformesID,
+    date: informe.date,
+    pdfLink: `/api/obtenerInforme?id=${informe.InformesID}`, // Reemplaza con la ruta correcta para obtener el PDF
+  }));
+
+  // Enviar respuesta como objeto JSON
+  res.json({ informes: informesConEnlace });
 };
 
 export const citas = async function (req, res) {
