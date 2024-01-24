@@ -37,6 +37,9 @@ export const obtenerPDFDesdeBaseDeDatos = async function (req, res) {
 
     const pdfBlob = informe[0].infrome;
 
+    // Configurar el tipo de contenido en el encabezado de la respuesta
+    res.setHeader("Content-Type", "application/pdf");
+
     // Enviar el blob como respuesta
     res.status(200).end(pdfBlob, "binary");
   } catch (error) {
