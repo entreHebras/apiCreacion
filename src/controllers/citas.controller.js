@@ -15,6 +15,10 @@ export const clientes = async function (req, res) {
 export const eliminarClientes = async function (req, res) {
   const ClienteID = req.params.ClienteID;
 
+  await pool.execute("DELETE FROM login WHERE login.cliente_id = ?", [
+    ClienteID,
+  ]);
+
   await pool.execute("DELETE FROM tablacitas WHERE tablacitas.ClienteID = ?", [
     ClienteID,
   ]);
