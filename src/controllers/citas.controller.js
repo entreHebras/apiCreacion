@@ -10,7 +10,7 @@ export const infromesGuardar = async function (req, res) {
 
 export const seleccionarInformes = async function (req, res) {
   const [infomrer] = await pool.query("select * from tablaInformes ");
-  res.send(infomrer);
+  res.send({ infomrer });
 };
 
 export const citas = async function (req, res) {
