@@ -4,7 +4,7 @@ import { transporter } from "../email.js";
 
 export const citas = async function (req, res) {
   const [events] = await pool.query(
-    "SELECT tablaclientes.Nombre, tablaclientes.Apellido,empleados.Nombre,empleados.Apellido,tablaservicios.NombreServicio,tablahorarios.hora,date FROM tablacitas INNER JOIN tablaclientes on tablacitas.ClienteID =tablaclientes.ClienteID INNER JOIN empleados on tablacitas.EmpleadoID=empleados.EmpleadoID INNER JOIN tablaservicios on tablacitas.servicioSolicitado=tablaservicios.ServicioID INNER JOIN tablahorarios on tablacitas.horaCita=tablahorarios.idHorario"
+    "SELECT tablaclientes.Nombre AS NombreCliente, tablaclientes.Apellido AS ApellidoCliente,empleados.Nombre,empleados.Apellido,tablaservicios.NombreServicio,tablahorarios.hora,date FROM tablacitas INNER JOIN tablaclientes on tablacitas.ClienteID =tablaclientes.ClienteID INNER JOIN empleados on tablacitas.EmpleadoID=empleados.EmpleadoID INNER JOIN tablaservicios on tablacitas.servicioSolicitado=tablaservicios.ServicioID INNER JOIN tablahorarios on tablacitas.horaCita=tablahorarios.idHorario"
   );
   res.json(events);
 };
