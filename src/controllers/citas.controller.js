@@ -15,9 +15,7 @@ export const clientes = async function (req, res) {
 export const eliminarClientes = async function (req, res) {
   const ClienteID = req.params.ClienteID;
 
-  await pool.execute("DELETE FROM login WHERE login.cliente_id = ?", [
-    ClienteID,
-  ]);
+  await pool.execute("DELETE FROM login WHERE cliente_id = ?", [ClienteID]);
 
   await pool.execute("DELETE FROM tablacitas WHERE tablacitas.ClienteID = ?", [
     ClienteID,
@@ -38,6 +36,16 @@ export const horariosCitas = async function (req, res) {
 export const servicios = async function (req, res) {
   const [servicios] = await pool.query("select * from tablaservicios");
   res.send(servicios);
+};
+
+export const eliminarServicios = async function (req, res) {
+  const ServicioID = req.params.ServicioID;
+
+  await pool.query(
+    "DELETE FROM tablaservicios WHERE tablaservicios.ServicioID = ?",
+    [ServicioID]
+  );
+  res.send("exitoso0   ");
 };
 
 export const insertarServicios = async function (req, res) {

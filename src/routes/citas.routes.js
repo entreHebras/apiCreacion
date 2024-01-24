@@ -4,6 +4,7 @@ import {
   citasCliente,
   clientes,
   eliminarClientes,
+  eliminarServicios,
   horariosCitas,
   informacionCliente,
   insertarServicios,
@@ -34,5 +35,5 @@ router.post("/registroUsuario", registroUsuario);
 router.post("/reservaCita", reservaCita);
 router.post("/recuperarContrasenia", recuperarContrasenia);
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
-
+router.delete("/eliminarServicios/:ServicioID", eliminarServicios);
 export default router;
