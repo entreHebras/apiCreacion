@@ -14,6 +14,7 @@ import {
   recuperarContrasenia,
   registroUsuario,
   reservaCita,
+  seleccionarInformes,
   servicios,
   usuarios,
   validar,
@@ -30,6 +31,8 @@ router.get("/horariosCitas", horariosCitas);
 router.get("/servicioOfrecido", servicios);
 router.get("/login", login1);
 router.get("/usuarios", usuarios);
+router.get("/seleccionarInforme", seleccionarInformes);
+
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);
