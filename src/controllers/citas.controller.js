@@ -15,11 +15,34 @@ export const seleccionarInformes = async function (req, res) {
   const informesConEnlace = informes.map((informe) => ({
     id: informe.InformesID,
     date: informe.date,
-    pdfLink: `/api/obtenerInforme?id=${informe.InformesID}`, // Reemplaza con la ruta correcta para obtener el PDF
+    pdfLink: `/obtenerInforme?id=${informe.InformesID}`, // Reemplaza con la ruta correcta para obtener el PDF
   }));
 
   // Enviar respuesta como objeto JSON
   res.json({ informes: informesConEnlace });
+};
+
+export const obtenerPDFDesdeBaseDeDatos = async function (req, res) {
+  const { id } = req.query;
+
+  try {
+    const [informe] = await pool.query(
+      "SELECT informe FROM tablaInformes WHERE id = ?",
+      [id]
+    );
+
+    if (!informe || informe.length === 0) {
+      return res.status(404).json({ error: "Informe no encontrado" });
+    }
+
+    const pdfBlob = informe[0].pdfBlob;
+
+    // Enviar el blob como respuesta
+    res.status(200).end(pdfBlob, "binary");
+  } catch (error) {
+    console.error("Error al obtener el PDF desde la base de datos:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
 };
 
 export const citas = async function (req, res) {
