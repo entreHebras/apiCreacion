@@ -1,12 +1,10 @@
 import express from "express";
 import citasCuentas from "./routes/citas.routes.js";
 import cookieParser from "cookie-parser";
-import multer from "multer";
+
 import "./config.js";
 import cors from "cors";
 const app = express();
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 
 const corsOption = {
   origin: "https://egtrbgtrbr.000webhostapp.com/#/",
