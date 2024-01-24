@@ -9,7 +9,7 @@ export const infromesGuardar = async function (req, res) {
 };
 
 export const seleccionarInformes = async function (req, res) {
-  const [infomrer] = await pool.query("select * from tablaInformes ");
+  const [informes] = await pool.query("select * from tablaInformes ");
 
   // Agregar el enlace al PDF en cada informe
   const informesConEnlace = informes.map((informe) => ({
