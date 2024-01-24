@@ -27,7 +27,7 @@ export const obtenerPDFDesdeBaseDeDatos = async function (req, res) {
 
   try {
     const [informe] = await pool.query(
-      "SELECT informe FROM tablaInformes WHERE id = ?",
+      "SELECT informe FROM tablaInformes WHERE InformesID = ?",
       [id]
     );
 
