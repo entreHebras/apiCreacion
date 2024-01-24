@@ -7,6 +7,7 @@ import {
   eliminarServicios,
   horariosCitas,
   informacionCliente,
+  infromesGuardar,
   insertarServicios,
   login,
   login1,
@@ -17,6 +18,9 @@ import {
   usuarios,
   validar,
 } from "../controllers/citas.controller.js";
+import multer from "multer";
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 const router = Router();
 
@@ -34,6 +38,9 @@ router.post("/login", login);
 router.post("/registroUsuario", registroUsuario);
 router.post("/reservaCita", reservaCita);
 router.post("/recuperarContrasenia", recuperarContrasenia);
+
+router.post("/guardarInforme", upload.single("pdf"), infromesGuardar);
+
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 router.delete("/eliminarServicios/:ServicioID", eliminarServicios);
 export default router;
