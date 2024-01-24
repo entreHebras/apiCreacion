@@ -11,6 +11,7 @@ import {
   insertarServicios,
   login,
   login1,
+  obtenerPDFDesdeBaseDeDatos,
   recuperarContrasenia,
   registroUsuario,
   reservaCita,
@@ -32,6 +33,7 @@ router.get("/servicioOfrecido", servicios);
 router.get("/login", login1);
 router.get("/usuarios", usuarios);
 router.get("/seleccionarInforme", seleccionarInformes);
+router.get("/obtenerInforme", obtenerPDFDesdeBaseDeDatos);
 
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
