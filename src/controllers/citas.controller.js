@@ -151,6 +151,69 @@ export const usuarios = async function (req, res) {
   res.send(er);
 };
 
+export const registroEmpleados = async function (req, res) {
+  const {
+    Nombre,
+    Apellido,
+    Cedula,
+    Telefono,
+    CorreoElectronico,
+    direccion,
+    estado,
+    acceso,
+    contrasenia,
+    CorreoElectronico2,
+  } = req.body;
+
+  const [er] = await pool.query("select usuario from login where usuario=?", [
+    CorreoElectronico2,
+  ]);
+
+  if (er.length <= 0) {
+    const [result] = await pool.execute(
+      "INSERT INTO empleados (Nombre, Apellido,Cedula, Telefono,CorreoElectronico,direccion,estado,acceso) VALUES (?,?,?,?,?,?,?,?)",
+      [
+        Nombre,
+        Apellido,
+        Cedula,
+        Telefono,
+        CorreoElectronico,
+        direccion,
+        estado,
+        acceso,
+      ]
+    );
+
+    if (acceso == 1) {
+      const lastInsertId = result.insertId;
+      await pool.execute(
+        "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
+        [CorreoElectronico, contrasenia, 1, lastInsertId]
+      );
+
+      try {
+        await transporter.sendMail({
+          from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
+          to: CorreoElectronico2, // list of receivers
+          subject: "Notificacion ✔", // Subject line
+          html: `
+    <b><center> Tu tikect </center> </b><br>
+     <b>Tu cita : ${Nombre}, ${Apellido}  </b> <br>
+     
+
+    `,
+        });
+      } catch (error) {
+        emailStatus = error;
+      }
+      res.json({ lastInsertId });
+    }
+  } else {
+    console.log("correo electronico ya registrado");
+    res.status(404).json({ mesanje: "correo electronico ya registradonpm" });
+  }
+};
+
 export const registroUsuario = async function (req, res) {
   const {
     Nombre,
