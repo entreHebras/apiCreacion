@@ -184,7 +184,7 @@ export const registroEmpleados = async function (req, res) {
       ]
     );
 
-    if (acceso == 1) {
+    if (acceso == true) {
       const lastInsertId = result.insertId;
       await pool.execute(
         "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
