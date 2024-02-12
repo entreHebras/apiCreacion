@@ -187,7 +187,7 @@ export const registroEmpleados = async function (req, res) {
     if (acceso == true) {
       const lastInsertId = result.insertId;
       await pool.execute(
-        "insert into login(usuario,contrasena,tipo_usuario,cliente_id) VALUES(?,?,?,?) ",
+        "insert into login(usuario,contrasena,tipo_usuario,empleado_id) VALUES(?,?,?,?) ",
         [CorreoElectronico, contrasenia, 1, lastInsertId]
       );
 
