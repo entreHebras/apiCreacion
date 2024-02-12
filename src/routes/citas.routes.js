@@ -13,6 +13,7 @@ import {
   login1,
   obtenerPDFDesdeBaseDeDatos,
   recuperarContrasenia,
+  registroEmpleados,
   registroUsuario,
   reservaCita,
   seleccionarInformes,
@@ -40,10 +41,10 @@ router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);
+router.post("/registroEmpleado", registroEmpleados);
 router.post("/registroUsuario", registroUsuario);
 router.post("/reservaCita", reservaCita);
 router.post("/recuperarContrasenia", recuperarContrasenia);
-
 router.post("/guardarInforme/:idCita", upload.single("pdf"), infromesGuardar);
 
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
