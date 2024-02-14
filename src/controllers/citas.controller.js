@@ -207,6 +207,12 @@ export const registroEmpleados = async function (req, res) {
         emailStatus = error;
       }
       res.json({ lastInsertId });
+    } else {
+      const lastInsertId = result.insertId;
+      await pool.execute(
+        "insert into login(usuario,contrasena,tipo_usuario,empleado_id) VALUES(?,?,?,?) ",
+        [CorreoElectronico, contrasenia, 3, lastInsertId]
+      );
     }
   } else {
     console.log("correo electronico ya registrado");
