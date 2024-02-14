@@ -309,7 +309,7 @@ export const reservaCita = async function (req, res) {
   const { ClienteID, servicioSolicitado, horaCita, date } = req.body;
   await pool.query(
     "INSERT INTO tablacitas (ClienteID, EmpleadoID, servicioSolicitado,horaCita,date,estado) VALUES (?,?,?,?,?,?)",
-    [ClienteID, 1, servicioSolicitado, horaCita, date, 0]
+    [ClienteID, 6, servicioSolicitado, horaCita, date, 0]
   );
   res.send("exitoso");
 };
