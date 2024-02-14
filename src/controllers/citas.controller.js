@@ -213,6 +213,21 @@ export const registroEmpleados = async function (req, res) {
         "insert into login(usuario,contrasena,tipo_usuario,empleado_id) VALUES(?,?,?,?) ",
         [CorreoElectronico, contrasenia, 3, lastInsertId]
       );
+
+      try {
+        await transporter.sendMail({
+          from: '"entreHebras" <entrehebras06@gmail.com>', // sender address
+          to: CorreoElectronico2, // list of receivers
+          subject: "Notificacion ✔", // Subject line
+          html: `
+    <b><center> Bienvenido a tu nuevo trabajo en pocos dias notificaremos de mas novedades </center> </b><br>
+   
+    `,
+        });
+      } catch (error) {
+        emailStatus = error;
+      }
+      res.json({ lastInsertId });
     }
   } else {
     console.log("correo electronico ya registrado");
