@@ -36,7 +36,7 @@ router.get("/login", login1);
 router.get("/usuarios", usuarios);
 router.get("/seleccionarInforme", seleccionarInformes);
 router.get("/obtenerInforme", obtenerPDFDesdeBaseDeDatos);
-router.get("empleados", empleados);
+router.get("/empleados", empleados);
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
 router.post("/validar", validar);
