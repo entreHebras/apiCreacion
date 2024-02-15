@@ -6,6 +6,7 @@ import {
   eliminarClientes,
   eliminarServicios,
   empleados,
+  empleadosID,
   horariosCitas,
   informacionCliente,
   infromesGuardar,
@@ -39,6 +40,7 @@ router.get("/obtenerInforme", obtenerPDFDesdeBaseDeDatos);
 router.get("/empleados", empleados);
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
+router.post("/informacionEmpleados", empleadosID);
 router.post("/validar", validar);
 router.post("/insertarServicios", insertarServicios);
 router.post("/login", login);

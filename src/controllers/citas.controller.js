@@ -348,3 +348,12 @@ export const empleados = async function (req, res) {
   const [empleados] = await pool.query("select * from empleados");
   res.send(empleados);
 };
+
+export const empleadosID = async function (req, res) {
+  const { id } = req.body;
+  const [empleados] = await pool.query(
+    "select * from empleados where EmpleadoID=?",
+    [id]
+  );
+  res.send(empleados);
+};
