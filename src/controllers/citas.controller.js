@@ -371,7 +371,7 @@ export const editarEmpleados = async function (req, res) {
   } = req.body;
 
   await pool.query(
-    "UPDATE empleados SET (Nombre=?Apellido=?Cedula=?Telefono=?CorreoElectronico=?direccion=?estado=?) WHERE EmpleadoID=?",
+    "UPDATE empleados SET (Nombre=?,Apellido=?,Cedula=?,Telefono=?,CorreoElectronico=?,direccion=?,estado=?) WHERE EmpleadoID=?",
     [
       Nombre,
       Apellido,
