@@ -357,3 +357,31 @@ export const empleadosID = async function (req, res) {
   );
   res.send(empleados);
 };
+
+export const editarEmpleados = async function (req, res) {
+  const {
+    Nombre,
+    Apellido,
+    Cedula,
+    Telefono,
+    CorreoElectronico,
+    direccion,
+    estado,
+    id,
+  } = req.body;
+
+  await pool.query(
+    "UPDATE empleados SET (Nombre=?Apellido=?Cedula=?Telefono=?CorreoElectronico=?direccion=?estado=?) WHERE EmpleadoID=?",
+    [
+      Nombre,
+      Apellido,
+      Cedula,
+      Telefono,
+      CorreoElectronico,
+      direccion,
+      estado,
+      id,
+    ]
+  );
+  res.send("exitoso");
+};
