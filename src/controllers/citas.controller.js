@@ -364,7 +364,21 @@ export const empleadosID = async function (req, res) {
   res.send(empleados);
 };
 
-export const eliminarEmpleados = async function (req, res) {};
+export const eliminarEmpleados = async function (req, res) {
+  const EmpleadoID = req.params.EmpleadoID;
+
+  await pool.execute("DELETE FROM login WHERE empleado_id = ?", [EmpleadoID]);
+
+  await pool.execute(
+    "UPDATE tablacitas SET tablacitas.EmpleadoID=1 WHERE tablacitas.EmpleadoID = ?",
+    [EmpleadoID]
+  );
+
+  await pool.query("DELETE FROM empleados WHERE empleados.EmpleadoID = ?", [
+    EmpleadoID,
+  ]);
+  res.send("exitoso0   ");
+};
 
 export const editarEmpleados = async function (req, res) {
   const {
