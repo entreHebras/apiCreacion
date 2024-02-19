@@ -94,14 +94,12 @@ export const servicios = async function (req, res) {
 
 export const eliminarServicios = async function (req, res) {
   const ServicioID = req.params.ServicioID;
-
-  await pool.query(
-    "DELETE FROM tablaservicios WHERE tablaservicios.ServicioID = ?",
-    [ServicioID]
-  );
-
   await pool.query(
     "DELETE FROM tablacitas WHERE tablacitas.servicioSolicitado = ?",
+    [ServicioID]
+  );
+  await pool.query(
+    "DELETE FROM tablaservicios WHERE tablaservicios.ServicioID = ?",
     [ServicioID]
   );
 
