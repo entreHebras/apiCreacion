@@ -89,7 +89,7 @@ export const horariosCitas = async function (req, res) {
 
 export const servicios = async function (req, res) {
   const [servicios] = await pool.query(
-    "select * from tablaservicios WHERE CitaID>1"
+    "select * from tablaservicios WHERE ServicioID>1"
   );
   res.send(servicios);
 };
