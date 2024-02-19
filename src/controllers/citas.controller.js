@@ -88,14 +88,16 @@ export const horariosCitas = async function (req, res) {
 };
 
 export const servicios = async function (req, res) {
-  const [servicios] = await pool.query("select * from tablaservicios");
+  const [servicios] = await pool.query(
+    "select * from tablaservicios WHERE CitaID>1"
+  );
   res.send(servicios);
 };
 
 export const eliminarServicios = async function (req, res) {
   const ServicioID = req.params.ServicioID;
   await pool.query(
-    "UPDATE tablacitas SET tablacitas.servicioSolicitado=null WHERE tablacitas.servicioSolicitado = ?",
+    "UPDATE tablacitas SET tablacitas.servicioSolicitado=1 WHERE tablacitas.servicioSolicitado = ?",
     [ServicioID]
   );
   await pool.query(
