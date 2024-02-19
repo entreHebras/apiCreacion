@@ -99,6 +99,12 @@ export const eliminarServicios = async function (req, res) {
     "DELETE FROM tablaservicios WHERE tablaservicios.ServicioID = ?",
     [ServicioID]
   );
+
+  await pool.query(
+    "DELETE FROM tablacitas WHERE tablacitas.servicioSolicitado = ?",
+    [ServicioID]
+  );
+
   res.send("exitoso0   ");
 };
 
@@ -357,6 +363,8 @@ export const empleadosID = async function (req, res) {
   );
   res.send(empleados);
 };
+
+export const eliminarEmpleados = async function (req, res) {};
 
 export const editarEmpleados = async function (req, res) {
   const {
