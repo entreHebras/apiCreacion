@@ -407,3 +407,8 @@ export const editarEmpleados = async function (req, res) {
   );
   res.send("exitoso");
 };
+export const seleccionarEmpleado = async function (req, res) {
+  const [res] = await pool.query("select * from empleados where estado=1");
+
+  res.send(res);
+};

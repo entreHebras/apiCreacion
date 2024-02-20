@@ -20,6 +20,7 @@ import {
   registroEmpleados,
   registroUsuario,
   reservaCita,
+  seleccionarEmpleado,
   seleccionarInformes,
   servicios,
   usuarios,
@@ -40,6 +41,8 @@ router.get("/usuarios", usuarios);
 router.get("/seleccionarInforme", seleccionarInformes);
 router.get("/obtenerInforme", obtenerPDFDesdeBaseDeDatos);
 router.get("/empleados", empleados);
+router.get("/seleccionarEmpleado", seleccionarEmpleado);
+
 router.post("/citasCliente", citasCliente);
 router.post("/informacionCliente", informacionCliente);
 router.post("/informacionEmpleados", empleadosID);
