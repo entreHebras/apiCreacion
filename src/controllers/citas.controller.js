@@ -415,10 +415,9 @@ export const seleccionarEmpleado = async function (req, res) {
 };
 
 export const cancelarCita = async function (req, res) {
-  const { ID } = req.body;
-  const [resr] = await pool.query("DELETE FROM tablacitas WHERE CitaID = ?", [
-    ID,
-  ]);
+  const CitaID = req.params.CitaID;
 
-  res.send(resr);
+  await pool.query("DELETE FROM tablacitas WHERE CitaID = ?", [CitaID]);
+
+  res.send("exitoso");
 };
