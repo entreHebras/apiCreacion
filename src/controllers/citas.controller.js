@@ -305,7 +305,7 @@ export const citasCliente = async function (req, res) {
   const { id } = req.body;
 
   const [er] = await pool.query(
-    "select empleados.Nombre, empleados.Apellido,tablaservicios.NombreServicio,tablaservicios.Precio,tablaservicios.DuracionEstimada,tablahorarios.hora,date,CitaID from tablacitas INNER JOIN empleados ON tablacitas.EmpleadoID = empleados.EmpleadoID INNER JOIN tablaservicios ON tablacitas.servicioSolicitado=tablaservicios.ServicioID INNER JOIN tablahorarios ON tablacitas.horaCita=tablahorarios.idHorario where  tablacitas.ClienteID=?",
+    "select empleados.Nombre, empleados.Apellido,tablaservicios.NombreServicio,tablaservicios.Precio,tablaservicios.DuracionEstimada,tablahorarios.hora,date,tablacitas.CitaID from tablacitas INNER JOIN empleados ON tablacitas.EmpleadoID = empleados.EmpleadoID INNER JOIN tablaservicios ON tablacitas.servicioSolicitado=tablaservicios.ServicioID INNER JOIN tablahorarios ON tablacitas.horaCita=tablahorarios.idHorario where  tablacitas.ClienteID=?",
     [id]
   );
   res.send(er);
