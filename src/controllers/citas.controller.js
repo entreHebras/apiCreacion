@@ -413,3 +413,12 @@ export const seleccionarEmpleado = async function (req, res) {
 
   res.send(resr);
 };
+
+export const cancelarCita = async function (req, res) {
+  const { ID } = req.body;
+  const [resr] = await pool.query("DELETE FROM tablacitas WHERE CitaID = ?", [
+    ID,
+  ]);
+
+  res.send(resr);
+};

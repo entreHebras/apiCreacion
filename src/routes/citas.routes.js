@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  cancelarCita,
   citas,
   citasCliente,
   clientes,
@@ -58,5 +59,5 @@ router.put("/editarEmpleado", editarEmpleados);
 router.delete("/eliminarClientes/:ClienteID", eliminarClientes);
 router.delete("/eliminarServicios/:ServicioID", eliminarServicios);
 router.delete("/eliminarEmpleado/:EmpleadoID", eliminarEmpleados);
-
+router.delete("cancelarCita", cancelarCita);
 export default router;
