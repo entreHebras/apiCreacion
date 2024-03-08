@@ -145,7 +145,7 @@ export const validar = async function (req, res) {
   console.log(fecha);
   const [events] = await pool.query(
     "SELECT tablahorarios.idHorario, tablahorarios.hora, COUNT(tablacitas.horaCita) AS total_ocurrencias FROM tablahorarios  LEFT JOIN tablacitas  ON tablahorarios.idHorario = tablacitas.horaCita AND tablacitas.date =? GROUP BY tablahorarios.hora,tablahorarios.idHorario HAVING COUNT(tablacitas.horaCita) < 3;",
-    [fecha]
+    ""[fecha]
   );
 
   res.json(events);
@@ -352,7 +352,7 @@ export const recuperarContrasenia = async function (req, res) {
 };
 
 export const empleados = async function (req, res) {
-  const [empleados] = await pool.query("select * from empleados");
+  const [empleados] = await pool.query("select * from empleados EmpleadoID>6 ");
   res.send(empleados);
 };
 
@@ -371,7 +371,7 @@ export const eliminarEmpleados = async function (req, res) {
   await pool.execute("DELETE FROM login WHERE empleado_id = ?", [EmpleadoID]);
 
   await pool.execute(
-    "UPDATE tablacitas SET tablacitas.EmpleadoID=1 WHERE tablacitas.EmpleadoID = ?",
+    "UPDATE tablacitas SET tablacitas.EmpleadoID=6 WHERE tablacitas.EmpleadoID = ?",
     [EmpleadoID]
   );
 
